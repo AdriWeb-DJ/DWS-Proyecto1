@@ -19,15 +19,4 @@ public interface MenuInterfaz {
 	 * @throws IOException
 	 */
 	byte MenuPrincipal() throws IOException;
-
-	/**
-	 * Vista menu modificar datos
-	 * 
-	 * @return byte
-	 * @author nrojlla 230924
-	 * @throws IOException 
-	 */
-
-	byte MenuModificarDatos() throws IOException;
-
 }

@@ -1,17 +1,19 @@
 package servicios;
 
 /**
- * Lista de metodos de los ficheros
+ * Lista de los metodos de Fichero
  * 
- * @author nrojlla 230924
- * 
+ * @author aprasto 17/10/2024
  */
-public interface FicheroInterfaz {
-	/**
-	 * Carga inicial de fichero de alumnos
-	 * 
-	 * @author nrojlla 230924
-	 */
-	void CargarFicheros();
 
+public interface FicheroInterfaz {
+	
+	/**
+	 * Abrir, escribir y cerrar fichero log
+	 * 
+	 * @param mensaje
+	 * @param fichero
+	 */
+	
+	void EscribirFichero(String mensaje, String fichero);
 }

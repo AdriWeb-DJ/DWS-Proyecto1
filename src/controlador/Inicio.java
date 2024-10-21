@@ -1,59 +1,82 @@
 package controlador;
 
+import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.AlumnoDto;
-import servicios.FicheroInterfaz;
+import dto.UsuarioDto;
 import servicios.MenuImplementacion;
 import servicios.MenuInterfaz;
-import servicios.OperativaImplementacion;
-import servicios.OperativaInterfaz;
+import servicios.UsuarioImplementacion;
+import servicios.UsuarioInterfaz;
+import servicios.FicheroInterfaz;
+import servicios.FicheroImplementacion;
 
 /**
- * Aplicacion de alumnos
+ * Aplicacion de Usuarios
  * 
- * @author nrojlla 200924
+ * @author aprasto 17/10/2024
  */
+
 public class Inicio {
 
-	public static List<AlumnoDto> listaAlumno = new ArrayList<AlumnoDto>();
-	public static MenuInterfaz mi = new MenuImplementacion();
-
+	public static List<UsuarioDto> listaUsuario = new ArrayList<UsuarioDto>();
+	
+	
+	
 	public static void main(String[] args) {
 
+		LocalDate fecha = LocalDate.now();
+		String directorioFichero = "ficheros";
+		String fichero = directorioFichero + File.separator + fecha + " FicheroLog.txt";
+		
+		MenuInterfaz mi = new MenuImplementacion();
+		FicheroInterfaz fi = new FicheroImplementacion();
+		
 		byte opcionSeleccionar = 0;
 		boolean esCerrado = false;
+		String mensaje = "";
 
-		OperativaInterfaz oi = new OperativaImplementacion();
-		FicheroInterfaz fi = new FicheroImplementacion();
+		UsuarioInterfaz ui = new UsuarioImplementacion();
 		do {
 			
-			fi.CargarFicheros();
-
+			mensaje = "El menu ha sido iniciado";
+			
 			try {
 				opcionSeleccionar = mi.MenuPrincipal();
 
 				switch (opcionSeleccionar) {
 				case 0:
-					System.out.println("Has cerrado la aplicacion");
+					mensaje = "El menu ha sido cerrado";
+					fi.EscribirFichero(mensaje, fichero);
+					System.out.println(mensaje);
 					esCerrado = true;
 					break;
 				case 1:
-					System.out.println("Has seleccionado registrar a un alumno");
-					oi.RegistroAlumno();
+					mensaje = "Dar Alta Usuario";
+					fi.EscribirFichero(mensaje, fichero);
+					System.out.println(mensaje);
+					ui.RegistroUsuario();
 					break;
 				case 2:
-					System.out.println("Has seleccionado modificar");
-					oi.ModificarAlumno();
+					mensaje = "Dar Baja Usuario";
+					fi.EscribirFichero(mensaje, fichero);
+					System.out.println(mensaje);
+					ui.EliminarUsuario();
 					break;
 				case 3:
-					System.out.println("Has seleccionado dar baja");
-					oi.EliminarAlumno();
+					mensaje = "Modificar Usuario";
+					fi.EscribirFichero(mensaje, fichero);
+					System.out.println(mensaje);
+					ui.MenuModificarUsuario();
 					break;
-				// case 4:
-				// Utils.MostrarListaAlumnos();
-				// break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
+					break;
 
 				default:
 					System.out.println("Opcion no disponible");

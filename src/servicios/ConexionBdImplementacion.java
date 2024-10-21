@@ -1,13 +1,16 @@
 package servicios;
 
 import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
+/**
+ * Implementacion de los metodos de ConexionBdInterfaz
+ * 
+ * @author aprasto 17/10/2024
+ */
 
-public class ConexionBd {
-
-    public static void main(String[] args) {
+public class ConexionBdImplementacion implements ConexionBdInterfaz {
+	
+    public Connection conectarBd() {
 
         String url = "jdbc:postgresql://localhost:5432/proyecto_motos";
 
@@ -15,7 +18,8 @@ public class ConexionBd {
 
         String contraseña = "psw-123";
 
-
+        Connection conex = null;
+        
         try {
 
             // Cargar el controlador de la base de datos (opcional desde JDBC 4.0)
@@ -25,14 +29,14 @@ public class ConexionBd {
 
             // Obtener la conexión usando DriverManager
 
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+             conex = DriverManager.getConnection(url, usuario, contraseña);
 
 
-            if (conexion != null) {
+            if (conex == null) {
 
                 System.out.println("Conexión establecida con éxito.");
 
-                conexion.close();
+                conex.close();
 
             }
 
@@ -41,6 +45,7 @@ public class ConexionBd {
             e.printStackTrace();
 
         }
+		return conex;
 
     }
 
